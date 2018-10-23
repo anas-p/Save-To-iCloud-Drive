@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SaveToiCloud" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O9L-lP-64v">
+                                <rect key="frame" x="62.5" y="236" width="250" height="47"/>
+                                <color key="backgroundColor" red="0.043137254899999998" green="0.2666666667" blue="0.043137254899999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="D9I-79-PY3"/>
+                                    <constraint firstAttribute="height" constant="47" id="R3I-om-thF"/>
+                                </constraints>
+                                <state key="normal" title="Create Directory">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnCreateDiredtory:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DDI-DH-o8L"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="te8-lo-8YG">
+                                <rect key="frame" x="62.5" y="310" width="250" height="47"/>
+                                <color key="backgroundColor" red="0.90980392160000001" green="0.30980392159999998" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="DB5-yg-0XP"/>
+                                    <constraint firstAttribute="height" constant="47" id="Go3-Bp-GZK"/>
+                                </constraints>
+                                <state key="normal" title="Copy files">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnCopyFiles:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZTb-K3-H4x"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="te8-lo-8YG" firstAttribute="top" secondItem="O9L-lP-64v" secondAttribute="bottom" constant="27" id="Mp2-Xj-6bn"/>
+                            <constraint firstItem="O9L-lP-64v" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TPP-vg-g0J"/>
+                            <constraint firstItem="te8-lo-8YG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kDN-bt-HPf"/>
+                            <constraint firstItem="te8-lo-8YG" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="kJc-ha-AF3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="132.68365817091455"/>
+        </scene>
+    </scenes>
+</document>
