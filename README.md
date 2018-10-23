@@ -1,10 +1,11 @@
 # Save-To-iCloud-Drive
 Save a document file to iCloud drive
 
-Steps to follow:
+### Steps to follow:
 1. Start new Project
 2. Enable **iCloud Documents** with Xcode, from tab **Capabilities**
-3. Go to **Info.plist** of you application and add something similar to this.
+3. Create App Id and enable iCloud feature to your App Id
+4. Go to **Info.plist** of you application and add something similar to this.
 
     **Note:
     You need to have `NSUbiquitousContainerIsDocumentScopePublic=true` in Info.plist before you run the app for the *first time*, Otherwise directory will not be shown in iCloud Drive, It will be a hidden directory.**
@@ -23,7 +24,7 @@ Steps to follow:
 		</dict>
 	</dict>
     ```
-4. In ViewController **Create Directory**
+5. In ViewController **Create Directory**
     ```swift
     func createDirectory(){
         if let iCloudDocumentsURL = FileManager.default.url(forUbiquityContainerIdentifier: nil)?.appendingPathComponent("Documents") {
@@ -39,7 +40,7 @@ Steps to follow:
         }
     }
     ```
-5. Then put all files inside to this Directory
+6. Then put all files inside to this Directory
     ```swift
     func copyDocumentsToiCloudDirectory() {
         guard let localDocumentsURL = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: .userDomainMask).last else { return }
@@ -67,6 +68,6 @@ Steps to follow:
         }
     }
     ```
-    5: Run the application
+    7: Run the application
     
     
