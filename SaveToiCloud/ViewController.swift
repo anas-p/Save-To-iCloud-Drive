@@ -25,45 +25,56 @@ class ViewController: UIViewController {
 
     //Create iCloud Drive directory
     func createDirectory(){
-        if let iCloudDocumentsURL = FileManager.default.url(forUbiquityContainerIdentifier: nil)?.appendingPathComponent("Documents") {
-            if (!FileManager.default.fileExists(atPath: iCloudDocumentsURL.path, isDirectory: nil)) {
-                do {
-                    try FileManager.default.createDirectory(at: iCloudDocumentsURL, withIntermediateDirectories: true, attributes: nil)
-                }
-                catch {
-                    //Error handling
-                    print("Error in creating doc")
+        if isICloudContainerAvailable() {
+            if let iCloudDocumentsURL = FileManager.default.url(forUbiquityContainerIdentifier: nil)?.appendingPathComponent("Documents") {
+                if (!FileManager.default.fileExists(atPath: iCloudDocumentsURL.path, isDirectory: nil)) {
+                    do {
+                        try FileManager.default.createDirectory(at: iCloudDocumentsURL, withIntermediateDirectories: true, attributes: nil)
+                    }
+                    catch {
+                        //Error handling
+                        print("Error in creating doc")
+                    }
                 }
             }
+        }
+        else {
+            self.present(UIAlertController.init(title: "Oops!", message: "Not logged into iCloud", preferredStyle: .alert), animated: true, completion: nil)
+            
         }
     }
     
     //Copy files from local directory to iCloud Directory
     func copyDocumentsToiCloudDirectory() {
-        guard let localDocumentsURL = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: .userDomainMask).last else { return }
-        
-        let fileURL = localDocumentsURL.appendingPathComponent(file)
-        
-        guard let iCloudDocumentsURL = FileManager.default.url(forUbiquityContainerIdentifier: nil)?.appendingPathComponent("Documents").appendingPathComponent("file.txt") else { return }
-        
-        var isDir:ObjCBool = false
-        
-        if FileManager.default.fileExists(atPath: iCloudDocumentsURL.path, isDirectory: &isDir) {
+        if isICloudContainerAvailable() {
+            guard let localDocumentsURL = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: .userDomainMask).last else { return }
+            
+            let fileURL = localDocumentsURL.appendingPathComponent(file)
+            
+            guard let iCloudDocumentsURL = FileManager.default.url(forUbiquityContainerIdentifier: nil)?.appendingPathComponent("Documents").appendingPathComponent("file.txt") else { return }
+            
+            var isDir:ObjCBool = false
+            
+            if FileManager.default.fileExists(atPath: iCloudDocumentsURL.path, isDirectory: &isDir) {
+                do {
+                    try FileManager.default.removeItem(at: iCloudDocumentsURL)
+                }
+                catch {
+                    //Error handling
+                    print("Error in remove item")
+                }
+            }
+            
             do {
-                try FileManager.default.removeItem(at: iCloudDocumentsURL)
+                try FileManager.default.copyItem(at: fileURL, to: iCloudDocumentsURL)
             }
             catch {
                 //Error handling
-                print("Error in remove item")
+                print("Error in copy item")
             }
         }
-        
-        do {
-            try FileManager.default.copyItem(at: fileURL, to: iCloudDocumentsURL)
-        }
-        catch {
-            //Error handling
-            print("Error in copy item")
+        else {
+            self.present(UIAlertController.init(title: "Oops!", message: "Not logged into iCloud", preferredStyle: .alert), animated: true, completion: nil)
         }
     }
     
@@ -91,7 +102,16 @@ class ViewController: UIViewController {
             /* error handling here */
             print("Error in reading")
         }
-        
+    }
+    
+    //To check user logged in to iCloud
+    func isICloudContainerAvailable() -> Bool {
+        if FileManager.default.ubiquityIdentityToken != nil {
+            return true
+        }
+        else {
+            return false
+        }
     }
     
     // MARK: - Actions
