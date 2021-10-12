@@ -1,5 +1,5 @@
 # Save-To-iCloud-Drive
-Save a document file to iCloud drive
+Save a document to iCloud drive
 
 ### Steps to follow:
 1. Start new Project
